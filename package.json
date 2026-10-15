@@ -1,0 +1,12 @@
+{
+  "name": "medical-rp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone mobile-first medical browser game platform",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "start": "python3 -m http.server 8080 --bind 0.0.0.0",
+    "check": "node tests/check.mjs"
+  }
+}

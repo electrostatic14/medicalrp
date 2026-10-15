@@ -1,0 +1,454 @@
+body.playing {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+.playing .sidebar,
+.playing .topbar,
+.playing .mobile-nav {
+  display: none;
+}
+.playing .workspace {
+  margin: 0;
+}
+.playing .main {
+  padding: 0;
+  max-width: none;
+}
+.game-page {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #09131e;
+  position: relative;
+}
+.mission-top {
+  min-height: 59px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  padding: 7px max(17px, env(safe-area-inset-right)) 7px
+    max(17px, env(safe-area-inset-left));
+  border-bottom: 1px solid #ffffff0b;
+  background: #0e1d29;
+  flex-shrink: 0;
+}
+.mission-back {
+  background: none;
+  border: 1px solid #ffffff16;
+  border-radius: 8px;
+  min-width: 39px;
+  min-height: 39px;
+  display: grid;
+  place-items: center;
+  color: #91aabc;
+}
+.mission-top-title strong {
+  font-size: 12px;
+  display: block;
+}
+.mission-top-title span {
+  font-size: 8px;
+  color: #657f92;
+}
+.mission-top-brand {
+  color: #50707e;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  font-weight: 800;
+  margin-left: auto;
+}
+.mission-top .btn {
+  font-size: 9px;
+  min-height: 34px;
+  padding: 0 11px;
+}
+.game-root {
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+.game-shell {
+  min-height: 100%;
+  padding: 20px;
+  max-width: 1440px;
+  margin: auto;
+  position: relative;
+}
+.game-hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.game-hud h2 {
+  font-size: 20px;
+  margin-top: 3px;
+}
+.g-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #829aaa;
+  font-weight: 700;
+}
+.game-clock {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  border: 1px solid #ffffff0b;
+  padding: 8px 13px;
+  border-radius: 10px;
+  color: #b7d4db;
+  margin-left: auto;
+}
+.game-clock.urgent {
+  color: #ff9b8c;
+  border-color: #ff9b8c44;
+}
+.game-metric {
+  min-width: 90px;
+  text-align: right;
+}
+.game-metric span {
+  display: block;
+  color: #6a899e;
+  font-size: 9px;
+  margin-bottom: 4px;
+}
+.game-metric strong {
+  color: var(--accent);
+  font-size: 17px;
+}
+.game-objective {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #bed1db;
+  padding: 10px 14px;
+  background: #182d3a;
+  border: 1px solid #74e2c710;
+  border-radius: 9px;
+  margin-bottom: 12px;
+}
+.game-progress {
+  height: 3px;
+  background: #233545;
+  border-radius: 5px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+.game-progress i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width 0.35s;
+}
+.game-scene {
+  position: relative;
+  min-height: 220px;
+  border: 1px solid #ffffff0b;
+  border-radius: 16px;
+  background: linear-gradient(150deg, #142b3b, #0d1b29);
+  overflow: hidden;
+}
+.game-scene canvas {
+  touch-action: none;
+  display: block;
+  max-width: 100%;
+}
+.game-controls {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 15px;
+}
+.game-hint {
+  font-size: 11px;
+  line-height: 1.7;
+  color: #809bad;
+  padding: 11px 3px 0;
+}
+.game-feedback {
+  position: fixed;
+  bottom: 27px;
+  left: 50%;
+  transform: translate(-50%, 15px);
+  max-width: min(600px, calc(100% - 30px));
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 35px #0008;
+  font-size: 12px;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.2s;
+  text-align: center;
+}
+.game-feedback.visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.game-feedback.good {
+  background: #214b3f;
+  color: #c4f3dc;
+  border: 1px solid #81e4b44f;
+}
+.game-feedback.bad {
+  background: #4b2d35;
+  color: #ffd0c6;
+  border: 1px solid #ec9e8b4f;
+}
+.g-btn {
+  min-height: 44px;
+  border: 1px solid #66849830;
+  border-radius: 9px;
+  background: #203848;
+  color: #bfd1db;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 11px;
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+.g-btn:hover {
+  background: #2b4859;
+  border-color: #8aadbb55;
+}
+.g-btn.primary {
+  background: var(--accent);
+  color: #133630;
+  border-color: var(--accent);
+}
+.g-btn.danger {
+  background: #693d3b44;
+  color: #ffb29e;
+  border-color: #b5766d55;
+}
+.g-btn.selected,
+.g-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.12);
+}
+.g-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 9px;
+  border: 1px solid #ffffff13;
+  background: #172d3b;
+  border-radius: 6px;
+  color: #99b6c6;
+  font-size: 10px;
+}
+.g-card {
+  background: #102331;
+  border: 1px solid #ffffff12;
+  border-radius: 12px;
+  padding: 16px;
+}
+.g-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.g-meter {
+  height: 8px;
+  background: #283f4e;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.g-meter > i {
+  height: 100%;
+  display: block;
+  background: var(--accent);
+  transition: width 0.2s;
+}
+.g-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #cce2e9;
+}
+.rotation-hint {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  background: #283726;
+  color: #c5d9ad;
+  font-size: 9px;
+  padding: 6px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.rotation-hint .icon {
+  width: 14px;
+  height: 14px;
+}
+.game-loading {
+  display: flex;
+  min-height: 50dvh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 22px;
+  color: var(--accent);
+}
+.game-loading .icon {
+  width: 55px;
+  height: 55px;
+  animation: bootpulse 1.4s infinite;
+}
+.game-loading p {
+  font-size: 11px;
+  color: #7c9baa;
+}
+.game-pause-note {
+  padding: 20px;
+  background: #263f35;
+  border: 1px solid #74e2c730;
+  color: #afdbca;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.fps-note {
+  font-size: 8px;
+  color: #5d7b8e;
+}
+.game-scene button {
+  max-width: 100%;
+}
+@media (max-width: 760px) {
+  .game-shell {
+    padding: 14px;
+  }
+  .game-hud {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .game-hud h2 {
+    font-size: 16px;
+  }
+  .g-label {
+    font-size: 7px;
+  }
+  .game-clock {
+    font-size: 17px;
+    padding: 7px 10px;
+  }
+  .game-metric {
+    min-width: 60px;
+  }
+  .game-metric span {
+    font-size: 7px;
+  }
+  .game-metric strong {
+    font-size: 13px;
+  }
+  .game-objective {
+    font-size: 10px;
+    padding: 9px 11px;
+  }
+  .game-scene {
+    border-radius: 12px;
+    min-height: 230px;
+  }
+  .game-controls {
+    gap: 7px;
+    padding-top: 11px;
+  }
+  .g-btn {
+    font-size: 10px;
+    padding: 10px 12px;
+    min-height: 44px;
+  }
+  .game-hint {
+    font-size: 9px;
+  }
+  .game-feedback {
+    font-size: 10px;
+    bottom: 19px;
+  }
+  .mission-top {
+    gap: 10px;
+    min-height: 54px;
+    padding-top: max(7px, env(safe-area-inset-top));
+  }
+  .mission-top-title strong {
+    font-size: 11px;
+  }
+  .mission-top-brand {
+    display: none;
+  }
+  .mission-top .btn {
+    margin-left: auto;
+    font-size: 8px;
+  }
+  .g-card {
+    padding: 12px;
+  }
+  .g-title {
+    font-size: 13px;
+  }
+  .g-chip {
+    font-size: 9px;
+  }
+}
+@media (orientation: portrait) and (max-width: 760px) {
+  .game-page.landscape .rotation-hint {
+    display: flex;
+  }
+}
+@media (orientation: landscape) and (max-height: 550px) {
+  .mission-top {
+    min-height: 42px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  .mission-back {
+    min-height: 32px;
+    min-width: 32px;
+  }
+  .game-shell {
+    padding: 10px 16px;
+  }
+  .game-hud {
+    margin-bottom: 7px;
+  }
+  .game-hud h2 {
+    font-size: 14px;
+  }
+  .game-clock {
+    font-size: 16px;
+    padding: 5px 9px;
+  }
+  .game-objective {
+    padding: 7px 10px;
+    font-size: 10px;
+    margin-bottom: 7px;
+  }
+  .game-progress {
+    margin-bottom: 9px;
+  }
+  .game-scene {
+    min-height: 190px;
+  }
+  .game-hint {
+    font-size: 9px;
+  }
+  .game-controls {
+    padding-top: 9px;
+  }
+  .g-btn {
+    min-height: 38px;
+  }
+}

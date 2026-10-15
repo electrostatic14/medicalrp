@@ -1,0 +1,588 @@
+.three-scene {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.85fr);
+  gap: 16px;
+  align-items: stretch;
+  background: transparent !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  min-height: 430px;
+}
+.three-world {
+  position: relative;
+  min-width: 0;
+  min-height: 430px;
+  border: 1px solid rgba(104, 214, 208, 0.18);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #071723;
+  isolation: isolate;
+}
+.medical-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+.medical-viewport canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  outline: none;
+}
+.scene-marker {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  border: 1px solid #66e4d66b;
+  background: #071c2ddd;
+  color: #bceee8;
+  border-radius: 20px;
+  padding: 7px 10px;
+  font: 700 9px/1.2 var(--font-body, system-ui);
+  letter-spacing: 1px;
+  white-space: nowrap;
+  min-height: 32px;
+  cursor: pointer;
+  box-shadow: 0 5px 18px #0004;
+  backdrop-filter: blur(8px);
+}
+.scene-marker:before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #69ebd0;
+  box-shadow: 0 0 8px #69ebd0;
+}
+.scene-marker:hover,
+.scene-marker:focus-visible {
+  border-color: #85ffe9;
+  color: white;
+  background: #153c4de6;
+  outline: 2px solid #5cd8c6;
+  outline-offset: 2px;
+}
+.scene-patient {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 3;
+  color: #b6d4dc;
+  pointer-events: none;
+  font: 600 10px/1.5 var(--font-body, system-ui);
+  letter-spacing: 1px;
+  text-shadow: 0 2px 5px #000;
+}
+.scene-camera-bar {
+  position: absolute;
+  z-index: 4;
+  bottom: 14px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  pointer-events: none;
+}
+.scene-camera-bar .g-btn {
+  pointer-events: auto;
+  min-height: 40px;
+  padding: 8px 11px;
+  font-size: 11px;
+  background: #102b3bdc;
+  border: 1px solid #4f7b8e80;
+  backdrop-filter: blur(12px);
+  color: #d5f1f1;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px #0004;
+}
+.landscape-tip {
+  display: none;
+}
+.medical-workstation {
+  position: relative;
+  border: 1px solid #3154658c;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #132c3de8, #0b1c2be8);
+  padding: 22px;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 13px;
+}
+.medical-workstation h3 {
+  color: #edf8f5;
+  font-size: clamp(19px, 2vw, 26px);
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+.medical-workstation p {
+  margin: 0;
+}
+.medical-workstation .g-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #58dbc7;
+  line-height: 1.6;
+}
+.medical-instruction {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #a3bbc7;
+}
+.medical-workstation .g-btn {
+  width: 100%;
+  min-height: 48px;
+  font-size: 13px;
+  white-space: normal;
+}
+.medical-checklist {
+  display: grid;
+  gap: 10px;
+  margin: 10px 0;
+  color: #8aa8b7;
+  font-size: 13px;
+}
+.medical-checklist .done {
+  color: #65dfbf;
+}
+.medical-round-summary {
+  padding: 16px;
+  border: 1px solid #39bd9a44;
+  background: #114b3b30;
+  color: #88e9cb;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 2;
+}
+.medical-alert {
+  padding: 20px;
+  border: 1px solid #edb27166;
+  background: #3d2f233d;
+  border-radius: 12px;
+  color: #ffd09a;
+  font: 700 20px/1.5 monospace;
+  letter-spacing: 3px;
+  text-align: center;
+  animation: medical-alert 1.8s infinite;
+}
+.procedure-progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 9px;
+  color: #92b1bd;
+  font-size: 12px;
+}
+.procedure-progress strong {
+  color: #79e6cb;
+  font-variant-numeric: tabular-nums;
+}
+.procedure-progress > .g-meter {
+  grid-column: 1/-1;
+  height: 7px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #203b4a;
+}
+.procedure-progress > .g-meter > i {
+  display: block;
+  background: linear-gradient(90deg, #21b99e, #7af2cf);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.12s;
+}
+.oxygen-band {
+  position: relative;
+  height: 20px;
+  border-radius: 7px;
+  background: repeating-linear-gradient(90deg, #234050 0 2px, #142c3b 2px 10%);
+  border: 1px solid #3d667880;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.oxygen-band i {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  background: #55dbad77;
+  border-radius: 4px;
+  box-shadow: 0 0 12px #53dca844;
+}
+.medical-workstation input[type="range"] {
+  width: 100%;
+  accent-color: #64e2be;
+  min-height: 44px;
+  touch-action: pan-x;
+  cursor: ew-resize;
+  margin: -4px 0;
+}
+.regulator-caption {
+  font-size: 11px;
+  color: #90adb9;
+  justify-content: space-between;
+  gap: 10px;
+}
+.regulator-caption strong {
+  color: #f1d49e;
+  font-size: 13px;
+}
+.hold-action {
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s !important;
+}
+.hold-action.holding {
+  box-shadow:
+    0 0 0 3px #62f4ca44,
+    0 0 25px #38d1ae44;
+  transform: scale(0.98);
+  filter: brightness(1.12);
+}
+.rhythm-display {
+  position: relative;
+  width: 156px;
+  height: 156px;
+  max-width: 100%;
+  margin: 5px auto;
+  border-radius: 50%;
+  border: 3px solid #64d5c27d;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, #134d53, #0b2637 70%);
+  box-shadow: inset 0 0 24px #183e4a;
+}
+.rhythm-display:after {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 50%;
+  border: 1px dashed #b2dcd24d;
+}
+.rhythm-display strong {
+  position: relative;
+  z-index: 2;
+  color: #c9e9df;
+  font: 700 12px/1.2 monospace;
+  text-align: center;
+  pointer-events: none;
+}
+.rhythm-pulse {
+  position: absolute;
+  inset: 0;
+  border: 3px solid #90c6d0;
+  border-radius: 50%;
+  transform: scale(0.4);
+  opacity: 0.8;
+}
+.rhythm-display.in-window {
+  border-color: #98ffe1;
+  box-shadow:
+    0 0 22px #54edb643,
+    inset 0 0 25px #1c6258;
+}
+.rhythm-display.hit {
+  background: #216c60;
+  box-shadow: 0 0 28px #81ffd980;
+}
+.rhythm-tap {
+  touch-action: manipulation;
+}
+.game-controls [data-tool].selected {
+  border-color: #67ebce;
+  background: #1b5a56;
+  color: #b5ffe5;
+  box-shadow: 0 0 15px #45cfad22;
+}
+.game-controls [data-tool].recommended:not(.selected) {
+  border-color: #4b9c8f;
+}
+.game-controls [data-tool] {
+  touch-action: manipulation;
+  min-height: 48px;
+  font-size: 12px;
+}
+.surgical-tool-requirement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 12px;
+  background: #09202c;
+  border: 1px solid #345b6880;
+  border-radius: 10px;
+  font-size: 11px;
+  color: #7e9da9;
+}
+.surgical-tool-requirement strong {
+  color: #b0e8dc;
+  text-align: right;
+  font-size: 12px;
+}
+.procedure-instruction {
+  font-size: 12px;
+  line-height: 1.65;
+  color: #bacbd0;
+}
+.surgical-start-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  min-height: 85px;
+  border: 1px dashed #3c716b8c;
+  border-radius: 12px;
+  padding: 14px;
+  background: #10413e22;
+}
+.surgical-start-card > span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #236c622e;
+  font-size: 32px;
+  color: #70e7c9;
+}
+.surgical-start-card > p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #92aeba;
+}
+.surgery-field-host {
+  width: 100%;
+  min-width: 0;
+}
+.precision-field {
+  height: 260px;
+  min-height: 220px;
+  max-height: 350px;
+  width: 100%;
+  border: 1px solid #3f8c83;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #092331;
+  box-shadow: inset 0 0 30px #0005;
+  touch-action: none;
+  isolation: isolate;
+}
+.precision-field canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+}
+.precision-active .scene-marker {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.precision-active .medical-viewport:after {
+  content: "КАМЕРА ЗАФИКСИРОВАНА · РЕЖИМ ТОЧНОСТИ";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 42px;
+  text-align: center;
+  font: 700 9px/1.4 monospace;
+  letter-spacing: 1px;
+  color: #86ebcf;
+  pointer-events: none;
+  text-shadow: 0 2px 5px #000;
+}
+.webgl-fallback {
+  padding: 32px;
+  max-width: 620px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  background: #112b3d;
+  border: 1px solid #44788a;
+  border-radius: 16px;
+  color: #bbd2db;
+}
+.webgl-fallback h3 {
+  font-size: 24px;
+  color: #e8f8f4;
+  margin: 0;
+}
+.webgl-fallback p {
+  line-height: 1.8;
+  margin: 0;
+  font-size: 14px;
+}
+@keyframes medical-alert {
+  50% {
+    border-color: #edb271bb;
+    box-shadow: inset 0 0 25px #edb2710f;
+  }
+}
+@media (max-width: 850px) {
+  .three-scene {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .three-world {
+    min-height: 340px;
+  }
+  .medical-workstation {
+    padding: 20px;
+  }
+  .medical-workstation h3 {
+    font-size: 23px;
+  }
+  .medical-workstation {
+    gap: 12px;
+  }
+  .surgeon-workstation {
+    justify-content: start;
+  }
+  .rhythm-display {
+    width: 140px;
+    height: 140px;
+  }
+  .precision-field {
+    height: 285px;
+  }
+  .scene-marker {
+    font-size: 8px;
+    letter-spacing: 0.7px;
+  }
+  .scene-patient {
+    font-size: 9px;
+  }
+}
+@media (max-width: 550px) {
+  .three-world {
+    min-height: 290px;
+    border-radius: 13px;
+  }
+  .medical-workstation {
+    padding: 17px;
+    border-radius: 13px;
+  }
+  .medical-workstation h3 {
+    font-size: 21px;
+  }
+  .medical-workstation .g-btn {
+    min-height: 48px;
+  }
+  .medical-instruction {
+    font-size: 12px;
+  }
+  .scene-camera-bar {
+    bottom: 30px;
+    gap: 5px;
+  }
+  .scene-camera-bar .g-btn {
+    min-height: 36px;
+    font-size: 10px;
+    padding: 7px 9px;
+  }
+  .landscape-tip {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 8px;
+    right: 8px;
+    text-align: center;
+    color: #80a3af;
+    font-size: 9px;
+    pointer-events: none;
+    letter-spacing: 0.3px;
+  }
+  .scene-marker {
+    padding: 5px 7px;
+    min-height: 30px;
+    letter-spacing: 0.3px;
+    font-size: 7px;
+  }
+  .scene-marker:before {
+    margin-right: 4px;
+    width: 4px;
+    height: 4px;
+  }
+  .scene-patient {
+    font-size: 8px;
+    letter-spacing: 0.7px;
+    top: 12px;
+    left: 12px;
+  }
+  .game-controls [data-tool] {
+    font-size: 11px;
+    padding: 10px;
+  }
+  .precision-field {
+    height: 250px;
+    min-height: 220px;
+  }
+  .surgical-tool-requirement {
+    padding: 10px;
+  }
+  .medical-alert {
+    font-size: 17px;
+  }
+  .medical-round-summary {
+    padding: 13px;
+    font-size: 12px;
+  }
+}
+@media (orientation: landscape) and (max-height: 600px) {
+  .three-scene {
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 1fr);
+    gap: 12px;
+    align-items: stretch;
+  }
+  .three-world {
+    min-height: 330px;
+  }
+  .medical-workstation {
+    padding: 16px;
+  }
+  .medical-workstation h3 {
+    font-size: 19px;
+  }
+  .medical-instruction,
+  .procedure-instruction {
+    font-size: 11px;
+  }
+  .scene-camera-bar {
+    bottom: 12px;
+  }
+  .landscape-tip {
+    display: none;
+  }
+  .precision-field {
+    height: 225px;
+    min-height: 190px;
+  }
+  .medical-workstation .g-btn {
+    min-height: 44px;
+  }
+  .rhythm-display {
+    height: 110px;
+    width: 110px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .medical-alert {
+    animation: none;
+  }
+  .procedure-progress > .g-meter > i,
+  .hold-action {
+    transition: none !important;
+  }
+}

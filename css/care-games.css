@@ -1,0 +1,1173 @@
+/* Two clinics, two visual languages: a soft children's room and a radiology lab. */
+.care-scene {
+  background: #e6eceb;
+  color: #30465e;
+  overflow: hidden;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+.care-room {
+  position: relative;
+  min-height: 270px;
+  height: 31vh;
+  max-height: 340px;
+  background: linear-gradient(120deg, #e4eeeb, #e9e2f5 75%, #d7d5ee);
+  overflow: hidden;
+}
+.care-room:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 59px,
+    #fff2 60px 61px
+  );
+  pointer-events: none;
+}
+.care-room-window {
+  position: absolute;
+  left: 6%;
+  top: 32px;
+  width: 100px;
+  height: 120px;
+  border: 8px solid #fff9;
+  border-radius: 38px 38px 6px 6px;
+  background: linear-gradient(#b0d1ed, #d9edf5);
+  box-shadow: 0 7px 25px #567b9920;
+  overflow: hidden;
+}
+.care-room-window i {
+  position: absolute;
+  width: 70px;
+  height: 10px;
+  background: #fff6;
+  top: 45px;
+  left: 0;
+  transform: rotate(-30deg);
+}
+.care-room-window i + i {
+  top: 64px;
+  left: 38px;
+}
+.care-room-window span {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #fff;
+  font-size: 24px;
+}
+.care-room-cloud {
+  position: absolute;
+  font-size: 53px;
+  left: 38%;
+  top: 8px;
+  color: #fff9;
+  filter: drop-shadow(0 5px 5px #a8abc222);
+}
+.care-room-poster {
+  position: absolute;
+  right: 7%;
+  top: 30px;
+  width: 94px;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #fff9;
+  transform: rotate(4deg);
+  font-size: 38px;
+  border: 5px solid #d6cda9;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px #413a5515;
+}
+.care-room-poster small {
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #7c6d84;
+}
+.care-room-shelf {
+  position: absolute;
+  right: 4%;
+  bottom: 52px;
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  padding: 0 8px 4px;
+  border-bottom: 9px solid #d0af8d;
+  border-radius: 3px;
+  font-size: 25px;
+}
+.care-room-floor {
+  position: absolute;
+  inset: 78% 0 0;
+  background: linear-gradient(#c7d8d9, #bdcfd0);
+  border-top: 5px solid #f0f2ef;
+}
+.care-patient-seat {
+  position: absolute;
+  width: 170px;
+  height: 70px;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #aaa3d3;
+  border: 7px solid #bab3df;
+  border-radius: 30px 30px 8px 8px;
+  box-shadow:
+    0 10px 0 #9992c0,
+    0 17px 0 -9px #7e839c;
+}
+.care-child {
+  position: absolute;
+  width: 160px;
+  height: 218px;
+  bottom: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: filter 0.3s;
+  touch-action: none;
+}
+.care-avatar {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 8px 8px #46526f13);
+  animation: care-breathe 3.4s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+.care-child.worried .care-avatar {
+  animation: care-wiggle 3.3s ease-in-out infinite;
+}
+.care-child.happy .care-avatar {
+  animation: care-breathe 2.2s ease-in-out infinite;
+}
+.care-given-toy {
+  position: absolute;
+  left: 50%;
+  top: 61%;
+  transform: translateX(-50%);
+  font-size: 37px;
+  filter: drop-shadow(0 4px 2px #34405225);
+}
+.care-bubble {
+  position: absolute;
+  z-index: 3;
+  left: 10px;
+  top: 10px;
+  width: min(48%, 230px);
+  padding: 12px 14px;
+  border: 1px solid #ffffffb0;
+  border-radius: 16px 16px 16px 3px;
+  background: #fffffff0;
+  box-shadow: 0 5px 18px #484a7220;
+  backdrop-filter: blur(8px);
+  font-size: 11px;
+  line-height: 1.5;
+  animation: care-appear 0.3s ease-out;
+}
+.care-bubble strong {
+  display: block;
+  font-size: 13px;
+  color: #455c70;
+  margin-bottom: 4px;
+}
+.care-bubble span {
+  display: block;
+}
+.care-round-label {
+  position: absolute;
+  bottom: 9px;
+  right: 12px;
+  font-size: 9px;
+  letter-spacing: 1px;
+  font-weight: 800;
+  color: #526c7f;
+}
+.care-emotions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 12px 14px;
+  background: #f9faf7;
+  border-block: 1px solid #fff;
+  color: #58677b;
+}
+.care-emotions > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px;
+  font-size: 10px;
+}
+.care-emotions b {
+  font-size: 10px;
+  color: #4a576b;
+}
+.care-emotions i {
+  grid-column: 1/-1;
+  height: 5px;
+  background: linear-gradient(
+    90deg,
+    var(--care-meter) var(--care-level),
+    #e2e7eb var(--care-level)
+  );
+  border-radius: 8px;
+}
+.care-interaction {
+  padding: 14px;
+  flex: 1;
+  background: linear-gradient(145deg, #f7f8f6, #eef0f6);
+  min-height: 160px;
+}
+.care-step-label {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  color: #78839a;
+  margin: 0 0 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.care-dialogue,
+.care-conclusion {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  text-align: left;
+  border: 1px solid #d5dce5 !important;
+  background: #ffffffd9 !important;
+  color: #445770 !important;
+  border-radius: 12px !important;
+  margin-top: 8px;
+  padding: 11px 14px !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+  box-shadow: 0 2px 4px #364f6910 !important;
+  transition:
+    background 0.2s,
+    transform 0.2s !important;
+}
+.care-dialogue:hover,
+.care-conclusion:hover {
+  background: #e5f6ef !important;
+  transform: translateY(-1px);
+  border-color: #a5d5c2 !important;
+}
+.care-toys {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  padding: 6px 0 10px;
+}
+.care-toy {
+  min-height: 94px;
+  min-width: 85px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #fff;
+  border: 2px solid #e4e7f0;
+  border-radius: 19px;
+  color: #69778e;
+  cursor: grab;
+  touch-action: none;
+  box-shadow: 0 6px 12px #56607d0d;
+  position: relative;
+}
+.care-toy span {
+  font-size: 38px;
+}
+.care-toy small {
+  font-size: 10px;
+}
+.care-toy.selected {
+  border-color: #70bfa7;
+  background: #f1fff8;
+  box-shadow: 0 0 0 3px #91d7bb22;
+}
+.care-toy.dragging {
+  z-index: 30;
+  cursor: grabbing;
+  box-shadow: 0 15px 25px #36435f30;
+}
+.care-drop-zone {
+  border: 2px dashed #72bca100;
+  border-radius: 40px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.care-drop-zone.care-drop-hover {
+  border-color: #68ae92;
+  background: #a0e6be33;
+  filter: drop-shadow(0 0 10px #fff);
+}
+.care-firefly-field {
+  position: relative;
+  min-height: 175px;
+  height: 22vh;
+  max-height: 240px;
+  border: 1px solid #dee4ed;
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at 20% 20%, #e9e8f8, transparent 70%),
+    radial-gradient(ellipse at 90% 90%, #d2eee9, #edf3f5);
+  overflow: hidden;
+}
+.care-firefly-field:before,
+.care-firefly-field:after {
+  content: "✦";
+  position: absolute;
+  color: #c9c2df;
+  font-size: 80px;
+  opacity: 0.3;
+  right: 13%;
+  top: 15%;
+}
+.care-firefly-field:after {
+  font-size: 50px;
+  left: 8%;
+  top: 50%;
+  right: auto;
+}
+.care-firefly {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: #fff8d3;
+  box-shadow:
+    0 0 15px #fff1b3a0,
+    0 5px 8px #8e83a72b;
+  color: #8f7d5a;
+  font: 800 15px system-ui;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  touch-action: manipulation;
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s,
+    background 0.2s;
+}
+.care-firefly.next {
+  background: #c6f2df;
+  box-shadow:
+    0 0 0 5px #a7d9c550,
+    0 0 20px #eaffde;
+  animation: care-glow 1.8s ease-in-out infinite;
+}
+.care-instruments {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.care-instrument {
+  flex: 1;
+  min-width: 90px;
+  min-height: 48px !important;
+  background: #fff !important;
+  border: 1px solid #d8dfea !important;
+  color: #566780 !important;
+  border-radius: 12px !important;
+  padding: 9px 7px !important;
+  font-size: 11px !important;
+}
+.care-instrument.selected {
+  background: #dff4eb !important;
+  border-color: #7bbda6 !important;
+  color: #346e5b !important;
+}
+.care-exam-target {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  min-height: 58px;
+  background: #ffffffd9;
+  border: 2px dashed #9aacc2;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #7b8a9d;
+  z-index: 5;
+  touch-action: none;
+  padding: 0;
+  box-shadow: 0 0 0 4px #ffffff30;
+  cursor: pointer;
+}
+.care-exam-target.forehead {
+  left: calc(50% - 29px);
+  top: 13%;
+}
+.care-exam-target.chest {
+  left: calc(50% - 29px);
+  top: 51%;
+}
+.care-exam-target.hand {
+  right: -1px;
+  top: 65%;
+}
+.care-exam-target span {
+  font-size: 25px;
+}
+.care-exam-target.ready {
+  border-color: #53b697;
+  background: #e7fff0;
+  box-shadow:
+    0 0 0 5px #8fceb55c,
+    0 0 20px #dcfff1;
+}
+.care-exam-target svg {
+  position: absolute;
+  inset: -3px;
+  width: 60px;
+  height: 60px;
+  transform: rotate(-90deg);
+}
+.care-hold-ring {
+  stroke: #51b996;
+  stroke-width: 4;
+  fill: none;
+  stroke-dasharray: 163.4;
+  stroke-dashoffset: calc(163.4 * (1 - var(--hold, 0)));
+  stroke-linecap: round;
+}
+.care-hold-meter {
+  position: relative;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #e2e7ef;
+  height: 27px;
+  text-align: center;
+  margin-top: 12px;
+  line-height: 27px;
+  font-size: 10px;
+  color: #617089;
+}
+.care-hold-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: #b8dfcd;
+}
+.care-hold-meter span {
+  position: relative;
+}
+.care-findings {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.care-findings span {
+  padding: 5px 8px;
+  font-size: 10px;
+  border-radius: 7px;
+  background: #e1e8ef;
+  color: #53677f;
+}
+.care-case-notes {
+  padding: 12px;
+  background: #fff;
+  border: 1px solid #e0e5ee;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  font-size: 10px;
+  color: #68798e;
+}
+.care-case-notes p {
+  grid-column: 1/-1;
+  margin: 3px 0 0;
+  color: #4e6581;
+  line-height: 1.5;
+}
+.care-case-notes b {
+  color: #334f70;
+}
+
+/* Radiology viewport and reconstruction controls. */
+.trauma-scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 450px;
+  background: #060f1b;
+  overflow: hidden;
+}
+.trauma-topline {
+  position: absolute;
+  inset: 12px 14px auto;
+  z-index: 2;
+  pointer-events: none;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  font:
+    9px/1.5 ui-monospace,
+    SFMono-Regular,
+    monospace;
+  color: #81a4bd;
+  letter-spacing: 1px;
+}
+.trauma-topline strong {
+  display: block;
+  font-size: 11px;
+  color: #d7f6ff;
+  letter-spacing: 1.5px;
+}
+.trauma-xray-tag {
+  text-align: right;
+}
+.trauma-topline .trauma-live {
+  color: #58e3cf;
+}
+.trauma-canvas-wrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 320px;
+  touch-action: none;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 65% 45%, #17344a55, #06111f 70%);
+}
+.trauma-canvas-wrap:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid #8eceee13;
+  box-shadow: inset 0 0 60px #01080eaa;
+  pointer-events: none;
+}
+.trauma-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  touch-action: none;
+  cursor: crosshair;
+}
+.trauma-canvas:focus-visible {
+  outline: 2px solid #5fe7d8;
+  outline-offset: -3px;
+}
+.trauma-statusline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #0e1d2c;
+  border-top: 1px solid #80d3ed19;
+  font-size: 10px;
+  color: #90aec4;
+}
+.trauma-statusline b {
+  color: #8cebdc;
+  font-size: 12px;
+}
+.trauma-fragment-list {
+  display: flex;
+  gap: 6px;
+  overflow: auto;
+  padding: 10px 12px 2px;
+  scrollbar-width: thin;
+  background: #0a1724;
+}
+.trauma-fragment {
+  min-height: 42px !important;
+  min-width: 47px;
+  flex: 0 0 auto;
+  border: 1px solid #9bcae127 !important;
+  background: #152738 !important;
+  color: #b6d0df !important;
+  padding: 7px 10px !important;
+  border-radius: 8px !important;
+  font:
+    11px ui-monospace,
+    SFMono-Regular,
+    monospace !important;
+}
+.trauma-fragment.selected {
+  border-color: #52ddca !important;
+  color: #c0fff2 !important;
+  background: #1b443f !important;
+  box-shadow: 0 0 12px #3ce3c51a !important;
+}
+.trauma-fragment.locked {
+  color: #5bd4b0 !important;
+  background: #12322d !important;
+}
+.trauma-precision-tools {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 12px;
+  background: #0a1724;
+  color: #8da6bb;
+  font-size: 10px;
+}
+.trauma-precision-tools button {
+  min-width: 44px;
+  min-height: 44px;
+  background: #182c3d;
+  border: 1px solid #a1d2e12b;
+  border-radius: 8px;
+  color: #c0d5e7;
+  font-size: 17px;
+  cursor: pointer;
+}
+.trauma-angle-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.trauma-angle-control input {
+  width: 100%;
+  min-width: 30px;
+  accent-color: #54dbca;
+  touch-action: none;
+}
+.trauma-angle-control output {
+  font:
+    10px ui-monospace,
+    monospace;
+  min-width: 35px;
+  color: #9bdccd;
+}
+.trauma-actions {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.trauma-actions > button {
+  flex: 1;
+  min-width: 100px;
+  font-size: 11px !important;
+}
+.trauma-hint-bar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  color: #5f8199;
+  font-size: 10px;
+  background: #0a1724;
+  line-height: 1.5;
+}
+.trauma-view-modes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #0a1724;
+  padding: 6px 12px;
+  flex-wrap: wrap;
+}
+.trauma-view-modes button {
+  border: 1px solid #8ab8d22a;
+  background: #142839;
+  border-radius: 7px;
+  min-height: 36px;
+  min-width: 42px;
+  padding: 6px 11px;
+  color: #9fbbcc;
+  font-size: 10px;
+  cursor: pointer;
+}
+.trauma-view-modes button.active {
+  color: #7ff2dc;
+  background: #173e38;
+  border-color: #52ba9c;
+}
+.trauma-view-modes span {
+  margin-left: auto;
+  font:
+    10px ui-monospace,
+    monospace;
+  color: #6b94b0;
+}
+.trauma-nudge {
+  display: flex;
+  gap: 5px;
+  padding: 0 12px 9px;
+  background: #0a1724;
+}
+.trauma-nudge button {
+  flex: 1;
+  min-height: 40px;
+  border: 1px solid #7cb4cc2b;
+  background: #122636;
+  color: #a2c9dd;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 17px;
+}
+.trauma-fixation-panel {
+  padding: 14px;
+  background: #0b1d2a;
+  border-top: 1px solid #3bb89f33;
+}
+.trauma-fixation-panel h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #d4f3f0;
+}
+.trauma-fixation-panel p {
+  margin: 0 0 11px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #8fb0c2;
+}
+.trauma-fixation-choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.trauma-fixation-choices button {
+  min-height: 58px;
+  border: 1px solid #78b4c83c;
+  background: #152f40;
+  border-radius: 10px;
+  color: #b9d8df;
+  padding: 9px;
+  font-size: 10px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+.trauma-fixation-choices button span {
+  font-size: 22px;
+  display: block;
+  margin-bottom: 4px;
+}
+.trauma-fixation-choices button:hover {
+  background: #1d4b49;
+  border-color: #63cbae;
+}
+.trauma-finished-accuracy {
+  color: #60ddc2;
+}
+.trauma-actions .primary {
+  background: linear-gradient(110deg, #35c3aa, #299b9e) !important;
+}
+.trauma-round-banner {
+  position: absolute;
+  z-index: 5;
+  inset: 25% 10% auto;
+  background: #0c2635ec;
+  border: 1px solid #5cddc87a;
+  border-radius: 18px;
+  padding: 22px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px #0008;
+  pointer-events: none;
+  animation: care-appear 0.3s ease-out;
+}
+.trauma-round-banner strong {
+  font-size: 20px;
+  color: #89f6dc;
+  display: block;
+}
+.trauma-round-banner span {
+  display: block;
+  font-size: 11px;
+  color: #a5c8d7;
+  margin-top: 8px;
+}
+@keyframes care-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(-2px) scaleY(1.012);
+  }
+}
+@keyframes care-wiggle {
+  0%,
+  40%,
+  80%,
+  100% {
+    transform: rotate(0);
+  }
+  46%,
+  58% {
+    transform: rotate(-1.5deg);
+  }
+  52%,
+  64% {
+    transform: rotate(1.5deg);
+  }
+}
+@keyframes care-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 4px #a7d9c530,
+      0 0 13px #eaffde;
+  }
+  50% {
+    box-shadow:
+      0 0 0 7px #a7d9c550,
+      0 0 20px #eaffde;
+  }
+}
+@keyframes care-appear {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (min-width: 700px) {
+  .care-room {
+    min-height: 310px;
+  }
+  .care-child {
+    width: 185px;
+    height: 251px;
+  }
+  .care-bubble {
+    font-size: 13px;
+    width: 250px;
+    left: 6%;
+    top: 24px;
+    padding: 17px;
+  }
+  .care-bubble strong {
+    font-size: 15px;
+  }
+  .care-room-window {
+    width: 135px;
+    height: 160px;
+    left: 12%;
+    top: 55px;
+  }
+  .care-room-poster {
+    right: 13%;
+    top: 37px;
+    width: 110px;
+    height: 140px;
+    font-size: 47px;
+  }
+  .care-room-poster small {
+    font-size: 7px;
+  }
+  .care-room-shelf {
+    right: 10%;
+    bottom: 65px;
+    font-size: 35px;
+  }
+  .care-emotions {
+    padding: 14px 24px;
+    gap: 25px;
+  }
+  .care-emotions > div,
+  .care-emotions b {
+    font-size: 12px;
+  }
+  .care-interaction {
+    padding: 18px 24px;
+  }
+  .care-dialogue,
+  .care-conclusion {
+    font-size: 13px !important;
+  }
+  .care-firefly-field {
+    min-height: 185px;
+  }
+  .care-toys {
+    gap: 20px;
+  }
+  .care-toy {
+    min-width: 110px;
+    min-height: 100px;
+  }
+  .care-step-label {
+    font-size: 11px;
+  }
+  .trauma-canvas-wrap,
+  .trauma-canvas {
+    min-height: 390px;
+  }
+  .trauma-topline {
+    font-size: 10px;
+  }
+  .trauma-topline strong {
+    font-size: 13px;
+  }
+  .trauma-scene {
+    min-height: 580px;
+  }
+  .trauma-fragment {
+    min-width: 58px;
+  }
+  .trauma-hint-bar {
+    font-size: 11px;
+  }
+  .trauma-precision-tools {
+    grid-template-columns: auto minmax(120px, 1fr) auto;
+  }
+  .trauma-fixation-panel {
+    padding: 20px;
+  }
+  .trauma-fixation-choices button {
+    font-size: 12px;
+  }
+}
+@media (max-height: 540px) and (orientation: landscape) {
+  .care-scene {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 1fr auto;
+  }
+  .care-room {
+    height: 100%;
+    min-height: 260px;
+    grid-row: 1 / 3;
+  }
+  .care-emotions {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 8px;
+  }
+  .care-interaction {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 10px;
+  }
+  .care-bubble {
+    font-size: 9px;
+    width: 50%;
+    padding: 8px;
+  }
+  .care-bubble strong {
+    font-size: 10px;
+  }
+  .care-room-window {
+    width: 70px;
+    left: 10px;
+  }
+  .care-room-poster {
+    right: 12px;
+    width: 65px;
+    height: 85px;
+    font-size: 25px;
+  }
+  .care-room-poster small {
+    font-size: 5px;
+  }
+  .care-room-shelf {
+    font-size: 17px;
+    right: 7px;
+  }
+  .care-child {
+    width: 143px;
+    height: 194px;
+  }
+  .care-dialogue,
+  .care-conclusion {
+    font-size: 11px !important;
+    min-height: 40px;
+    padding: 8px 10px !important;
+  }
+  .care-firefly-field {
+    min-height: 180px;
+  }
+  .care-findings {
+    margin-top: 5px;
+  }
+  .trauma-scene {
+    min-height: 300px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 210px;
+    grid-template-rows: 1fr auto;
+  }
+  .trauma-canvas-wrap {
+    grid-column: 1;
+    grid-row: 1/6;
+    min-height: 300px;
+  }
+  .trauma-canvas {
+    min-height: 300px;
+  }
+  .trauma-topline {
+    right: 225px;
+    left: 10px;
+    top: 8px;
+    font-size: 8px;
+  }
+  .trauma-topline strong {
+    font-size: 10px;
+  }
+  .trauma-fragment-list,
+  .trauma-view-modes,
+  .trauma-precision-tools,
+  .trauma-nudge,
+  .trauma-hint-bar,
+  .trauma-fixation-panel {
+    grid-column: 2;
+    padding: 7px;
+  }
+  .trauma-fragment-list {
+    flex-wrap: wrap;
+    max-height: 102px;
+    overflow: auto;
+  }
+  .trauma-fragment {
+    min-height: 35px !important;
+    min-width: 40px;
+    padding: 5px !important;
+  }
+  .trauma-precision-tools {
+    gap: 5px;
+  }
+  .trauma-precision-tools button {
+    min-width: 36px;
+    min-height: 36px;
+  }
+  .trauma-statusline {
+    grid-column: 1/-1;
+  }
+  .trauma-view-modes button {
+    min-height: 31px;
+    min-width: 32px;
+    padding: 4px 7px;
+  }
+  .trauma-hint-bar {
+    font-size: 9px;
+  }
+  .trauma-fixation-choices {
+    grid-template-columns: 1fr;
+  }
+  .trauma-fixation-choices button {
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px;
+  }
+  .trauma-fixation-choices button span {
+    margin: 0;
+    font-size: 18px;
+  }
+  .trauma-fixation-panel p {
+    font-size: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .care-avatar,
+  .care-firefly.next {
+    animation: none;
+  }
+  .care-bubble,
+  .trauma-round-banner {
+    animation: none;
+  }
+}
+
+.care-scene[data-stage="exam"] .care-bubble {
+  width: 35%;
+  max-width: 200px;
+  padding: 10px;
+  font-size: 10px;
+}
+.care-scene[data-stage="exam"] .care-bubble strong {
+  font-size: 11px;
+}
+.care-firefly:active:not(:disabled) {
+  transform: translate(-50%, -50%) scale(0.96);
+}
+
+@media (max-height: 540px) and (orientation: landscape) {
+  .trauma-scene {
+    grid-template-rows: auto auto auto auto 1fr 32px;
+    min-height: 282px;
+  }
+  .trauma-canvas-wrap,
+  .trauma-canvas {
+    min-height: 250px;
+  }
+  .trauma-statusline {
+    grid-row: 6;
+  }
+  .trauma-fragment-list {
+    grid-row: 1;
+  }
+  .trauma-precision-tools {
+    grid-row: 2;
+  }
+  .trauma-nudge {
+    grid-row: 3;
+  }
+  .trauma-view-modes {
+    grid-row: 4;
+  }
+  .trauma-hint-bar {
+    grid-row: 5;
+  }
+  .trauma-fixation-panel {
+    grid-row: 1 / 4;
+  }
+  .trauma-scene[data-stage="inspect"] .trauma-view-modes {
+    grid-row: 1;
+  }
+  .trauma-scene[data-stage="inspect"] .trauma-hint-bar {
+    grid-row: 2;
+  }
+}
+.trauma-nudge button {
+  min-width: 0;
+  padding: 0;
+}
+@media (max-width: 360px) {
+  .care-toys {
+    gap: 8px;
+  }
+  .care-toy {
+    min-width: 0;
+    flex: 1;
+  }
+  .care-bubble {
+    padding: 10px;
+    font-size: 10px;
+  }
+  .care-bubble strong {
+    font-size: 12px;
+  }
+}
+.trauma-view-modes button,
+.trauma-precision-tools button,
+.trauma-nudge button {
+  min-width: 44px;
+  min-height: 44px;
+}
+.trauma-precision-tools > button {
+  width: 44px;
+  padding: 0;
+}
+.trauma-angle-control {
+  gap: 4px;
+}
+.trauma-fragment {
+  min-width: 44px;
+  min-height: 44px !important;
+}
